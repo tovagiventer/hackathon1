@@ -12,8 +12,7 @@ def run_query(query):
     connection.close()
     return results
 
-
-result = run_query("""CREATE TABLE IF NOT EXISTS books (
+sql_string = """CREATE TABLE IF NOT EXISTS books (
      id INTEGER PRIMARY KEY AUTOINCREMENT,
      title TEXT NOT NULL,
      author TEXT NOT NULL,
@@ -21,7 +20,9 @@ result = run_query("""CREATE TABLE IF NOT EXISTS books (
      status TEXT CHECK(status IN ('read','unread')),
      review TEXT,
      stock BOOLEAN,
-     medium TEXT CHECK(medium IN ('physical','ebook','audiobook')))""")
+     medium TEXT CHECK(medium IN ('physical','ebook','audiobook')))"""
+
+result = run_query(sql_string)
 
 
 print(tabulate(result, headers=['id', 'title', 'author', 'genre', 'status', 'review', 'stock', 'medium']))
@@ -52,45 +53,33 @@ def menu():
 
 menu()
 
-class Book():
-    def __init__(self, id, title, author, genre, status, review, stock, medium):
-        self.id = id
-        self.title = title
-        self.author = author
-        self.genre = genre
-        self.status = status
-        self.review = review
-        self.stock = stock
-        self.medium = medium
-
-
 # to add books:
 # cursor.execute("INSERT INTO books VALUES(for each row)")
 def create_item():
-    book.title = input("Title: ")
-    book.author = input("Author: ")
-    book.genre = ("Add the book\'s genre or type 'pass'")
-        if input == 'pass':
-            book.genre = 'NULL'
-    book.status = input("Type 'read' or 'unread, or type 'pass'. ")
-        if input == 'pass':
-            book.status = 'NULL'
-    book.review = input("If you've read the book, add what you thought of it! If not, type 'pass'. ")
-        if input == 'pass':
-            book.review = 'NULL'
-    book.stock = input("Do you own this book? Type y/n, or just type 'pass'. ")
-        if input == 'y':
-            book.stock = 'TRUE'
-        if input == 'n':
-            book.stock = 'FALSE'
-        if unput == 'pass':
-            book.stock = 'NULL'
-    book.medium = input("Finally, in what form to you own the book? List 'physical', 'ebook', or 'audiobook, or type 'pass'. ")
-        if input == 'pass':
-            book.medium = 'NULL'
-            
-    
+    title = input("Title: ")
+    author = input("Author: ")
+    genre = ("Add the book\'s genre or type 'pass'")
+    if genre == 'pass':
+        genre = 'NULL'
+    status = input("Type 'read' or 'unread, or type 'pass'. ")
+    if status == 'pass':
+        status = 'NULL'
+    review = input("If you've read the book, add what you thought of it! If not, type 'pass'. ")
+    if review == 'pass':
+        review = 'NULL'
+    stock = input("Do you own this book? Type y/n, or just type 'pass'. ")
+    if stock == 'y':
+        stock = 'TRUE'
+    elif stock == 'n':
+        stock = 'FALSE'
+    else:
+        stock = 'NULL'
+    medium = input("Finally, in what form to you own the book? List 'physical', 'ebook', or 'audiobook, or type 'pass'. ")
+    if medium == 'pass':
+        medium = 'NULL'
 
+    new_entry = """INSERT INTO books VALUES(f{title}, {author}, {genre}, {status}, {review}, {stock}, {medium})"""
+    run_query(new-entry)
 
 # to display table:
 # cursor.execute("SELECT * from books")

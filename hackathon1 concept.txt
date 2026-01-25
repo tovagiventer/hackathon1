@@ -1,0 +1,18 @@
+one table for books you own -> catalog
+one table for books you have/haven't read -> TBR
+catalog has id PRIMARY KEY, title NOT NULL, author NOT NULL, genre/synopsis, medium (physical/e-book/audiobook) & items can be removed
+TBR has catalog_id FOREIGN KEY, read/unread -- updatable--, rating/opinion once read
+(RIGHT/?) JOIN statement for display: TBR where tbr.cat_id = cat.id
+options should each be their own table (genre, medium)
+
+UI (Terminal) requires ability to: 
+1. see the tables -- maybe should be automatic/default, 
+2. add books to either table, 
+3. remove books from either table (but maybe only able to remove TBR if still unread?), 
+4. edit rows in either table, especially read/unread and rating in TBR, 
+5. maybe duplicate rows in catalog for multiple copies in different media?-but still only be one row in TBR , 
+6. and all auto-update those same categories on the other table EXCEPT deletion
+
+each table is its own class in OOP with its categories and possible ways of modification, each mod is a function
+
+

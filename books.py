@@ -26,27 +26,71 @@ result = run_query("""CREATE TABLE IF NOT EXISTS books (
 
 print(tabulate(result, headers=['id', 'title', 'author', 'genre', 'status', 'review', 'stock', 'medium']))
 
-# connection = sqlite3.connect ('book_organizer.db')
+def menu():
+    while True:
+        print("\n--- MENU ---")
+        print("1. Add entry")
+        print("2. View books list")
+        print("3. Update entry")
+        print("4. Delete entry")
+        print("5. Exit")
 
-# cursor = connection.cursor()
+        choice = input("Choose an option: ")
 
-# command1 = """CREATE TABLE IF NOT EXISTS books (
-#     id INTEGER PRIMARY KEY AUTOINCREMENT,
-#     title TEXT NOT NULL,
-#     author TEXT NOT NULL,
-#     genre TEXT,
-#     status TEXT CHECK(status IN ('read','unread')),
-#     rating INTEGER,
-#     review TEXT,
-#     in_stock BOOLEAN (in_stock IN ('yes', 'no')),
-#     medium TEXT CHECK(medium IN ('physical','ebook','audiobook')))"""
+        if choice == "1":
+            create_item()
+        elif choice == "2":
+            read_items()
+        elif choice == "3":
+            update_item()
+        elif choice == "4":
+            delete_item()
+        elif choice == "5":
+            break
+        else:
+            print("Invalid option")
 
-# cursor.execute(command1)
-# connection.commit()
-# connection.close()
+menu()
+
+class Book():
+    def __init__(self, id, title, author, genre, status, review, stock, medium):
+        self.id = id
+        self.title = title
+        self.author = author
+        self.genre = genre
+        self.status = status
+        self.review = review
+        self.stock = stock
+        self.medium = medium
+
 
 # to add books:
 # cursor.execute("INSERT INTO books VALUES(for each row)")
+def create_item():
+    book.title = input("Title: ")
+    book.author = input("Author: ")
+    book.genre = ("Add the book\'s genre or type 'pass'")
+        if input == 'pass':
+            book.genre = 'NULL'
+    book.status = input("Type 'read' or 'unread, or type 'pass'. ")
+        if input == 'pass':
+            book.status = 'NULL'
+    book.review = input("If you've read the book, add what you thought of it! If not, type 'pass'. ")
+        if input == 'pass':
+            book.review = 'NULL'
+    book.stock = input("Do you own this book? Type y/n, or just type 'pass'. ")
+        if input == 'y':
+            book.stock = 'TRUE'
+        if input == 'n':
+            book.stock = 'FALSE'
+        if unput == 'pass':
+            book.stock = 'NULL'
+    book.medium = input("Finally, in what form to you own the book? List 'physical', 'ebook', or 'audiobook, or type 'pass'. ")
+        if input == 'pass':
+            book.medium = 'NULL'
+            
+    
+
 
 # to display table:
 # cursor.execute("SELECT * from books")

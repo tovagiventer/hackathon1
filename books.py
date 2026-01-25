@@ -51,21 +51,21 @@ def menu():
         else:
             print("Invalid option")
 
-menu()
 
 # to add books:
 # cursor.execute("INSERT INTO books VALUES(for each row)")
 def create_item():
     title = input("Title: ")
     author = input("Author: ")
-    genre = ("Add the book\'s genre or type 'pass'")
+    genre = input("Add the book\'s genre or type 'pass'")
     if genre == 'pass':
         genre = 'NULL'
     status = input("Type 'read' or 'unread, or type 'pass'. ")
     if status == 'pass':
         status = 'NULL'
     review = input("If you've read the book, add what you thought of it! If not, type 'pass'. ")
-    if review == 'pass':
+    review = f"'{review}'"
+    if review == '\'pass\'':
         review = 'NULL'
     stock = input("Do you own this book? Type y/n, or just type 'pass'. ")
     if stock == 'y':
@@ -78,13 +78,19 @@ def create_item():
     if medium == 'pass':
         medium = 'NULL'
 
-    new_entry = """INSERT INTO books VALUES(f{title}, {author}, {genre}, {status}, {review}, {stock}, {medium})"""
-    run_query(new-entry)
+    new_entry = f"INSERT INTO books (title, author, genre, status, review, stock, medium) VALUES ('{title}', '{author}', '{genre}', '{status}', {review}, {stock}, '{medium}')"
+    print (new_entry)
+    run_query(new_entry)
+
+
 
 # to display table:
 # cursor.execute("SELECT * from books")
 # results = cursor.fetchall()
 # print(results)
+# def read_items():
+
+
 
 # to update-- status/stock/review:
 # cursor.execute("UPDATE table_name WHERE column_name=?")
@@ -94,3 +100,6 @@ def create_item():
 
 # to delete books:
 # cursor.execute("DELETE FROM table_name WHERE column_name=?")
+
+
+menu()

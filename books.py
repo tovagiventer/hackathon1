@@ -38,7 +38,7 @@ print(tabulate(result, headers=['id', 'title', 'author', 'genre', 'status', 'rev
 #     status TEXT CHECK(status IN ('read','unread')),
 #     rating INTEGER,
 #     review TEXT,
-#     stock BOOLEAN,
+#     in_stock BOOLEAN (in_stock IN ('yes', 'no')),
 #     medium TEXT CHECK(medium IN ('physical','ebook','audiobook')))"""
 
 # cursor.execute(command1)
@@ -46,15 +46,18 @@ print(tabulate(result, headers=['id', 'title', 'author', 'genre', 'status', 'rev
 # connection.close()
 
 # to add books:
-# cursor.execute("INSERT INTO book_log VALUES(for each row)")
+# cursor.execute("INSERT INTO books VALUES(for each row)")
 
 # to display table:
-# cursor.execute("SELECT * from book_log")
+# cursor.execute("SELECT * from books")
 # results = cursor.fetchall()
 # print(results)
 
 # to update-- status/stock/review:
 # cursor.execute("UPDATE table_name WHERE column_name=?")
+# step1=select row to edit by ilike
+# step2=user pick row by id to edit
+# step3=I update sql by row using id
 
 # to delete books:
 # cursor.execute("DELETE FROM table_name WHERE column_name=?")

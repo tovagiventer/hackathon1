@@ -57,12 +57,11 @@ def menu():
 def create_item():
     title = input("Title: ")
     author = input("Author: ")
-    genre = input("Add the book\'s genre or type 'pass'")
-    if genre == 'pass':
+    genre = input("Add the book\'s genre or type 'pass'. ")
+    genre = f"'{genre}'"
+    if genre == '\'pass\'':
         genre = 'NULL'
-    status = input("Type 'read' or 'unread, or type 'pass'. ")
-    if status == 'pass':
-        status = 'NULL'
+    status = input("Type 'read' or 'unread'. ")
     review = input("If you've read the book, add what you thought of it! If not, type 'pass'. ")
     review = f"'{review}'"
     if review == '\'pass\'':
@@ -73,9 +72,12 @@ def create_item():
     elif stock == 'n':
         stock = 'FALSE'
     else:
+        stock = f"'{stock}'"
+    if stock == '\'pass\'':
         stock = 'NULL'
     medium = input("Finally, in what form to you own the book? List 'physical', 'ebook', or 'audiobook, or type 'pass'. ")
-    if medium == 'pass':
+    medium = f"'{medium}'"
+    if medium == '\'pass\'':
         medium = 'NULL'
 
     new_entry = f"INSERT INTO books (title, author, genre, status, review, stock, medium) VALUES ('{title}', '{author}', '{genre}', '{status}', {review}, {stock}, '{medium}')"
@@ -88,7 +90,11 @@ def create_item():
 # cursor.execute("SELECT * from books")
 # results = cursor.fetchall()
 # print(results)
-# def read_items():
+def read_items():
+    column_search = input("Type in which category you want to find, or type * for the full table. ")
+    show_table = f"SELECT * from books VALUES (f{column_search})"
+    print (show_table)
+    run_query (show_table)
 
 
 
